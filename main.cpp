@@ -5,6 +5,7 @@
 #include <fstream>
 #include "DataGeneration.h"
 #include "MergeSort.h"
+#include "HeapSort.h"
 using namespace std;
 
 void algoTest(vector<int> dataset, string testName, int mode){
@@ -24,6 +25,21 @@ void algoTest(vector<int> dataset, string testName, int mode){
     cout << fixed << setprecision(3);
     cout << "\nRunning Merge Sort...\n";
     cout << "Merge Sort Runtime: " << elapsed << " seconds\n";
+  }
+
+  // Heap Sort
+  if (mode == 2) {
+    vector<int> dataCopy = dataset;
+
+    auto start = high_resolution_clock::now();
+    heapSort(dataCopy);
+    auto end = high_resolution_clock::now();
+
+    double elapsed = chrono::duration<double>(end-start).count();
+
+    cout << fixed << setprecision(3);
+    cout << "\nRunning Heap Sort...\n";
+    cout << "Heap Sort Runtime: " << elapsed << " seconds\n";
   }
 
 
