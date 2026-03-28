@@ -94,7 +94,6 @@ int main(){
   cout << "\nChoose Algorithm:\n";
   cout << "1. Merge Sort\n";
   cout << "2. Heap Sort\n";
-  cout << "3. Comparison\n";
   cout << "Selection: ";
   cin >> algoChoice;
 
