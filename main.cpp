@@ -1,11 +1,32 @@
 #include <iostream>
 #include <iomanip>
+#include <vector>
+#include <chrono>
 #include <fstream>
-#include "DataGenerator.h"
+#include "DataGeneration.h"
+#include "MergeSort.h"
 using namespace std;
 
 void algoTest(vector<int> dataset, string testName, int mode){
   //implementation needed to run test (get the time) based on different algorithms. Uses parameters dataset testName and mode to pick between merge or heap sort.
+  using namespace chrono;
+
+  //merge sort
+  if (mode == 1) {
+    vector<int> dataCopy = dataset;
+
+    auto start = high_resolution_clock::now();
+    mergeSort(dataCopy, 0, dataCopy.size() - 1);
+    auto end = high_resolution_clock::now();
+
+    double elapsed = chrono::duration<double>(end-start).count();
+
+    cout << fixed << setprecision(3);
+    cout << "\nRunning Merge Sort...\n";
+    cout << "Merge Sort Runtime: " << elapsed << " seconds\n";
+  }
+
+
 }
 
 int main(){
