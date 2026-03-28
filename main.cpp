@@ -82,34 +82,49 @@ void algoTest(vector<int> dataset, string testName, int mode){
 int main(){
   int size = 100000;
   int dataChoice, algoChoice;
+  char repeat = 'y';
 
-  cout << "--- SortBench Performance Tool ---\n";
-  cout << "1. Random Dataset\n";
-  cout << "2. Sorted Dataset\n";
-  cout << "3. Reverse Sorted Dataset\n";
-  cout << "4. Duplicates Dataset\n";
-  cout << "Selection: ";
-  cin >> dataChoice;
+  while (repeat == 'y') {
+    // Dataset selection
+    cout << "\n--- SortBench Performance Tool ---\n";
+    cout << "1. Random Dataset\n";
+    cout << "2. Sorted Dataset\n";
+    cout << "3. Reverse Sorted Dataset\n";
+    cout << "4. Duplicates Dataset\n";
+    cout << "Selection: ";
 
-  cout << "\nChoose Algorithm:\n";
-  cout << "1. Merge Sort\n";
-  cout << "2. Heap Sort\n";
-  cout << "3. Comparison\n";
-  cout << "Selection: ";
-  cin >> algoChoice;
+    cin >> dataChoice;
+    while (dataChoice != 1 && dataChoice != 2 && dataChoice != 3 && dataChoice != 4) {
+      cout << "Invalid selection. Please Pick 1-4: ";
+      cin >> dataChoice;
+    }
 
-  vector<int> dataset;
-  string name;
-  
-  // Generate based on selection
-  if (dataChoice == 1) {dataset = DataGenerator::generateRandom(size); name = "Random";}
-  else if (dataChoice == 2) {dataset = DataGenerator::generateSorted(size); name = "Sorted";}
-  else if (dataChoice == 3) {dataset = DataGenerator::generateReverseSorted(size); name = "Reverse";}
-  else if (dataChoice == 4) {dataset = DataGenerator::generateDuplicates(size); name = "Duplicates";}
-  else {
-    cout << "Invalid Dataset Selection." << endl;
-    return 0;
+    // Algorithm selection
+    cout << "\nChoose Algorithm:\n";
+    cout << "1. Merge Sort\n";
+    cout << "2. Heap Sort\n";
+    cout << "3. Comparison\n";
+    cout << "Selection: ";
+
+    cin >> algoChoice;
+    while (algoChoice != 1 && algoChoice != 2 && algoChoice != 3) {
+      cout << "Invalid selection. Please Pick 1-3: ";
+      cin >> algoChoice;
+    }
+
+    // Generate based on selection
+    vector<int> dataset;
+    string name;
+    if (dataChoice == 1) {dataset = DataGenerator::generateRandom(size); name = "Random";}
+    else if (dataChoice == 2) {dataset = DataGenerator::generateSorted(size); name = "Sorted";}
+    else if (dataChoice == 3) {dataset = DataGenerator::generateReverseSorted(size); name = "Reverse";}
+    else if (dataChoice == 4) {dataset = DataGenerator::generateDuplicates(size); name = "Duplicates";}
+    algoTest(dataset, name, algoChoice);
+
+    // Ask user to run again
+    cout << "\nDo you want to run another test? (y/n): ";
+    cin >> repeat;
   }
-  algoTest(dataset, name, algoChoice);
+  cout << "Thank you for using SortBench!\n";
   return 0;
 }
