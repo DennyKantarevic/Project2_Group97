@@ -42,6 +42,40 @@ void algoTest(vector<int> dataset, string testName, int mode){
     cout << "Heap Sort Runtime: " << elapsed << " seconds\n";
   }
 
+  if (mode == 3) {
+    vector<int> dataCopy = dataset;
+
+    auto start_merge = high_resolution_clock::now();
+    mergeSort(dataCopy, 0, dataCopy.size() - 1);
+    auto end_merge = high_resolution_clock::now();
+
+    double elapsed_merge = chrono::duration<double>(end_merge-start_merge).count();
+
+    cout << fixed << setprecision(3);
+    cout << "\nRunning Merge Sort...\n";
+    cout << "Merge Sort Runtime: " << elapsed_merge << " seconds\n";
+
+    auto start_heap = high_resolution_clock::now();
+    heapSort(dataCopy);
+    auto end_heap = high_resolution_clock::now();
+
+    double elapsed_heap = chrono::duration<double>(end_heap-start_heap).count();
+
+    cout << fixed << setprecision(3);
+    cout << "\nRunning Heap Sort...\n";
+    cout << "Heap Sort Runtime: " << elapsed_heap << " seconds\n\n";
+
+    if (elapsed_merge > elapsed_heap) {
+      double difference = elapsed_merge - elapsed_heap;
+      cout << setprecision(5);
+      cout << "Heap Sort performed faster on this dataset by " << difference << " seconds." << endl;
+    }
+    else {
+      double difference = elapsed_heap - elapsed_merge;
+      cout << setprecision(5);
+      cout << "Merge Sort performed faster on this dataset by " << difference << " seconds." << endl;
+    }
+  }
 
 }
 
