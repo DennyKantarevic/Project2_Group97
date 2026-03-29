@@ -84,7 +84,7 @@ int main(){
   int dataChoice, algoChoice;
   char repeat = 'y';
 
-  while (repeat == 'y') {
+  while (repeat == 'y' || repeat == 'Y') {
     // Dataset selection
     cout << "\n--- SortBench Performance Tool ---\n";
     cout << "1. Random Dataset\n";
